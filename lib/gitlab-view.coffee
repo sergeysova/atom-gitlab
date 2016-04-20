@@ -1,5 +1,5 @@
 module.exports =
-class AtomGitlabView
+class GitlabView
   constructor: (serializedState) ->
     # Create root element
     @element = document.createElement('div')
@@ -7,7 +7,7 @@ class AtomGitlabView
 
     # Create message element
     message = document.createElement('div')
-    message.textContent = "The AtomGitlab package is Alive! It's ALIVE!"
+    message.textContent = "The Gitlab package is Alive! It's ALIVE!"
     message.classList.add('message')
     @element.appendChild(message)
 

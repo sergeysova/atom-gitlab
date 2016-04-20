@@ -1,6 +1,6 @@
 {
-  "name": "atom-gitlab",
-  "main": "./lib/atom-gitlab",
+  "name": "gitlab",
+  "main": "./lib/gitlab",
   "version": "0.0.2",
   "description": "A short description of your package",
   "keywords": [],

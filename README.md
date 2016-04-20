@@ -1,4 +1,4 @@
-# Atom Gitlab
+# Gitlab
 
 Manage your GitLab repositories from Atom.
 
@@ -12,10 +12,10 @@ Manage your GitLab repositories from Atom.
 ### Installation
 
 ```bash
-apm install atom-gitlab
+apm install gitlab
 ```
 
-or throw Atom GUI: `Atom Gitlab`
+or throw Atom GUI: `Gitlab`
 
 
 ### Features
