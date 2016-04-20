@@ -1,10 +1,9 @@
 {
   "name": "atom-gitlab",
   "main": "./lib/atom-gitlab",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A short description of your package",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
     "atom-workspace": "gitlab:toggle"
   },
@@ -13,6 +12,5 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
