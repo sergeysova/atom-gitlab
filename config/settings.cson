@@ -1,0 +1,10 @@
+config:
+  server_1:
+    type: 'object'
+    properties:
+      url:
+        type: 'string'
+        default: 'https://gitlab.com'
+      token:
+        type: 'string'
+        default: ''

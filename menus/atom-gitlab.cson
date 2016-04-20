@@ -1,0 +1,30 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+# 'context-menu':
+#   'atom-text-editor': [
+#     {
+#       'label': 'Toggle atom-gitlab'
+#       'command': 'atom-gitlab:toggle'
+#     }
+#   ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'GitLab'
+      'submenu': [
+        {
+          'label': 'Toggle projects panel'
+          'command': 'gitlab:toggle-projects'
+        }
+        {
+          'label': 'Create project'
+          'command': 'gitlab:create-project'
+        }
+        {
+          'label': 'Clone project'
+          'command': 'gitlab:clone-project'
+        }
+      ]
+    ]
+  }
+]
