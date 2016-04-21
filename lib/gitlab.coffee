@@ -26,9 +26,9 @@ module.exports = Gitlab =
   config: populateConfigs Config
 
   activate: (state) ->
-    @projectsView = new ProjectsView(@state)
+    @projectsView = new ProjectsView(state.projectsViewState)
     # @modalPanel = atom.workspace.addModalPanel(item: @projectsView.getElement(), visible: false)
-    @projectsPanel = (item: @projectsView.getElement())
+    @projectsPanel = @projectsView.attach()
 
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
@@ -37,7 +37,7 @@ module.exports = Gitlab =
     @subscriptions.add atom.commands.add 'atom-workspace', 'gitlab:toggle-projects': => @toggle()
 
   deactivate: ->
-    @modalPanel.destroy()
+    @modalPanel?.destroy()
     @subscriptions.dispose()
     @projectsView.destroy()
 
@@ -46,7 +46,7 @@ module.exports = Gitlab =
 
   toggle: ->
     console.log 'Gitlab was toggled!'
-
+    console.log('item', Object.keys(@projectsPanel))
     if @projectsPanel.isVisible()
       @projectsPanel.hide()
     else

@@ -1,20 +1,20 @@
-{$, ScrollView} = require 'atom-space-pen-views'
+{$, $$, ScrollView, SelectListView} = require 'atom-space-pen-views'
 
 module.exports =
 class ProjectsView extends ScrollView
 
   @content: ->
     @div class: 'gitlab-projects', =>
-      @div class: 'block', =>
-        @div 'asdasd'
+      @div class: 'panel', =>
+        @div outlet: 'panelText', class: 'padded', =>
+          @h4 'GitLab'
 
   initialize: ->
     super
-    @attach()
 
-  constructor: (serializedState) ->
+  # constructor: (serializedState) ->
     # # Create root element
-    @root = document.createElement('div')
+    # @root = document.createElement('div')
     # @root.classList.add('gitlab-projects')
     #
     # # Create message root
@@ -24,11 +24,14 @@ class ProjectsView extends ScrollView
     # @root.appendChild(message)
 
   # Returns an object that can be retrieved when package is activated
-  serialize: ->
-    {}
+  # serialize: ->
+  #   {}
 
-  getElement: ->
-    @
+  # getElement: ->
+  #   @
+
+  getTitle: ->
+    "GitLab"
 
   attach: ->
     atom.workspace.addRightPanel item: this
