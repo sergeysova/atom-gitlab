@@ -1,7 +1,7 @@
 {
   "name": "gitlab",
   "main": "./lib/gitlab",
-  "version": "0.1.2-1",
+  "version": "0.1.2-2",
   "description": "A short description of your package",
   "keywords": [],
   "repository": "https://github.com/LestaD/atom-gitlab",
