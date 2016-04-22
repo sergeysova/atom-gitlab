@@ -7,7 +7,7 @@ populateConfigs = (conf) ->
     conf["server_"+id] =
       type: 'object'
       properties:
-        'throw ssh':
+        'use ssh':
           type: 'boolean'
           default: false
         token:
@@ -15,7 +15,11 @@ populateConfigs = (conf) ->
           default: ''
         url:
           type: 'string'
-          default: 'https://gitlab.com'
+          default:
+            if id == 1
+              'https://gitlab.com'
+            else
+              ''
   conf
 
 module.exports = GitLab =
