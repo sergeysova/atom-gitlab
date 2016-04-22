@@ -2,7 +2,7 @@
   "name": "gitlab",
   "main": "./lib/gitlab",
   "version": "0.1.3-2",
-  "description": "A short description of your package",
+  "description": "Clone, push, checkout your GitLab repository",
   "keywords": [],
   "repository": "https://github.com/LestaD/atom-gitlab",
   "license": "MIT",
