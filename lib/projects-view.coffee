@@ -10,6 +10,7 @@ class ProjectsView extends ScrollView
       @div class: 'panel', =>
         @div outlet: 'panelText', class: 'padded', =>
           @h4 'GitLab'
+          @p 'Hello world'
 
   initialize: (state) ->
     @disposables = new CompositeDisposable
@@ -27,7 +28,6 @@ class ProjectsView extends ScrollView
 
   attach: ->
     @panel ?= atom.workspace.addRightPanel item: this
-    @createContent()
 
   detach: ->
     @panel.destroy()
@@ -38,12 +38,6 @@ class ProjectsView extends ScrollView
       @detach()
     else
       @attach()
-
-  createContent: ->
-    msg = document.createElement 'div'
-    msg.textContent = 'Hello world!'
-    msg.classList.add 'message'
-    @panelText.context.appendChild msg
 
   # Tear down any state and detach
   # destroy: ->

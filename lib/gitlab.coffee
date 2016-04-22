@@ -48,7 +48,6 @@ module.exports = GitLab =
     true
 
   toggle: ->
-    console.log('GitLab.toggle()', @projectsPanel?)
     if @projectsView?.isVisible()
       @projectsView.toggle()
     else
