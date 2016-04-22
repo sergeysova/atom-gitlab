@@ -5,9 +5,29 @@
 @import "ui-variables";
 
 .gitlab {
+  min-width: 260px;
 
-}
+  .gitlab-title {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
 
-.gitlab-projects {
-  min-width: 260px
+    h4 {
+      display: flex;
+      flex: 1;
+      margin: @component-icon-padding 0;
+      padding: @component-icon-padding;
+      line-height: 16px;
+    }
+
+    .badge {
+      display: flex;
+      margin: @component-icon-padding 0;
+      line-height: 16px;
+    }
+  }
+
+  .gitlab-projects-count {
+    float: right;
+  }
 }

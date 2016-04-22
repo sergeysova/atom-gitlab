@@ -22,11 +22,11 @@ or through Atom GUI: `Gitlab`
 
  - Clone project
  - Create new project
- - Create merge request
+ - Create branch/merge request
+ - Many gitlab servers
 
 
 ### Roadmap
-
  - Trigger builds
- - View/Open issues
- - Add many gitlab servers
+ - View/Close issues
+ - Create/Edit snippets
