@@ -18,36 +18,39 @@ populateConfigs = (conf) ->
           default: 'https://gitlab.com'
   conf
 
-module.exports = Gitlab =
+module.exports = GitLab =
   projectsView: null
-  projectsPanel: null
-  modalPanel: null
-  subscriptions: null
   config: populateConfigs Config
 
-  activate: (state) ->
-    @projectsView = new ProjectsView(state.projectsViewState)
-    # @modalPanel = atom.workspace.addModalPanel(item: @projectsView.getElement(), visible: false)
-    @projectsPanel = @projectsView.attach()
+  activate: (@state) ->
+    @disposables = new CompositeDisposable
+    @state.attached ?= true if @shouldAttach()
 
-    # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
-    @subscriptions = new CompositeDisposable
+    @createViews() if @state.attached
 
-    # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'gitlab:toggle-projects': => @toggle()
+    @disposables.add atom.commands.add 'atom-workspace', 'gitlab:toggle-projects': => @toggle()
 
   deactivate: ->
-    @modalPanel?.destroy()
-    @subscriptions.dispose()
-    @projectsView.destroy()
+    @disposables.dispose()
+    @projectsView?.deactivate()
+    @projectsView = null
 
   serialize: ->
-    projectsViewState: @projectsView.serialize()
+    projectsViewState: @projectsView?.serialize()
+
+  createViews: ->
+    unless @projectsView?
+      @projectsView = new ProjectsView @state.projectsViewState
+
+    @projectsView
+
+  shouldAttach: ->
+    true
 
   toggle: ->
-    console.log 'Gitlab was toggled!'
-    console.log('item', Object.keys(@projectsPanel))
-    if @projectsPanel.isVisible()
-      @projectsPanel.hide()
+    console.log('GitLab.toggle()', @projectsPanel?)
+    if @projectsView?.isVisible()
+      @projectsView.toggle()
     else
-      @projectsPanel.show()
+      @createViews()
+      @projectsView.attach()

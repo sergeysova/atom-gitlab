@@ -1,7 +1,9 @@
 {$, $$, ScrollView, SelectListView} = require 'atom-space-pen-views'
+{CompositeDisposable} = require 'atom'
 
 module.exports =
 class ProjectsView extends ScrollView
+  panel: null
 
   @content: ->
     @div class: 'gitlab-projects', =>
@@ -9,32 +11,39 @@ class ProjectsView extends ScrollView
         @div outlet: 'panelText', class: 'padded', =>
           @h4 'GitLab'
 
-  initialize: ->
-    super
+  initialize: (state) ->
+    @disposables = new CompositeDisposable
+    @attach() if state?.attached
 
-  # constructor: (serializedState) ->
-    # # Create root element
-    # @root = document.createElement('div')
-    # @root.classList.add('gitlab-projects')
-    #
-    # # Create message root
-    # message = document.createElement('div')
-    # message.textContent = "The Gitlab package is Alive! It's ALIVE!"
-    # message.classList.add('message')
-    # @root.appendChild(message)
+  serialize: ->
+    attached: @panel?
 
-  # Returns an object that can be retrieved when package is activated
-  # serialize: ->
-  #   {}
-
-  # getElement: ->
-  #   @
+  deactivate: ->
+    @disposables.dispose()
+    @detach() if @panel?
 
   getTitle: ->
     "GitLab"
 
   attach: ->
-    atom.workspace.addRightPanel item: this
+    @panel ?= atom.workspace.addRightPanel item: this
+    @createContent()
+
+  detach: ->
+    @panel.destroy()
+    @panel = null
+
+  toggle: ->
+    if @isVisible()
+      @detach()
+    else
+      @attach()
+
+  createContent: ->
+    msg = document.createElement 'div'
+    msg.textContent = 'Hello world!'
+    msg.classList.add 'message'
+    @panelText.context.appendChild msg
 
   # Tear down any state and detach
   # destroy: ->
