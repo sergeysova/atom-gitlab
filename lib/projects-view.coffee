@@ -16,6 +16,7 @@ class ProjectsView extends ScrollView
             @div class: 'block btn-group', =>
               @button class: 'btn icon icon-repo-clone', outlet: 'btnClone', 'Clone'
               @button class: 'btn icon icon-repo-create', outlet: 'btnCreate', 'Create'
+              @button class: 'btn icon icon-repo-sync', outlet: 'btnSync', 'Sync'
 
   initialize: (state) ->
     @disposables = new CompositeDisposable
@@ -32,7 +33,10 @@ class ProjectsView extends ScrollView
     "GitLab"
 
   attach: ->
-    @panel ?= atom.workspace.addRightPanel item: this
+    if atom.config.get('gitlab.position') == 'right'
+      @panel ?= atom.workspace.addRightPanel item: this
+    else
+      @panel ?= atom.workspace.addLeftPanel item: this
     @repoCount.context.innerHTML = Math.floor Math.random() * 10
 
   detach: ->

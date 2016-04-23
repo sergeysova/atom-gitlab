@@ -1,30 +1,11 @@
-ProjectsView = require './projects-view'
 { CompositeDisposable } = require 'atom'
 Config = require '../config/settings'
-
-populateConfigs = (conf) ->
-  for id in [1..5]
-    conf["server_"+id] =
-      type: 'object'
-      properties:
-        'use ssh':
-          type: 'boolean'
-          default: false
-        token:
-          type: 'string'
-          default: ''
-        url:
-          type: 'string'
-          default:
-            if id == 1
-              'https://gitlab.com'
-            else
-              ''
-  conf
+{get} = require 'axios'
+ProjectsView = require './projects-view'
 
 module.exports = GitLab =
   projectsView: null
-  config: populateConfigs Config
+  config: Config
 
   activate: (@state) ->
     @disposables = new CompositeDisposable
