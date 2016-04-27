@@ -1,6 +1,10 @@
 {$, $$, ScrollView, SelectListView} = require 'atom-space-pen-views'
 {CompositeDisposable} = require 'atom'
 
+Requester = require('./requester')
+
+gitlab = new Requester
+
 module.exports =
 class ProjectsView extends ScrollView
   panel: null
@@ -32,12 +36,21 @@ class ProjectsView extends ScrollView
   getTitle: ->
     "GitLab"
 
+  updateProjectsCount: ->
+    gitlab.getProjects()
+      .then (projects) =>
+        @repoCount.context.style.display = undefined;
+        @repoCount.context.innerHTML = projects.length
+      .catch (error) =>
+        console.error error
+        @repoCount.context.style.display = 'none';
+
   attach: ->
+    @updateProjectsCount()
     if atom.config.get('gitlab.position') == 'right'
       @panel ?= atom.workspace.addRightPanel item: this
     else
       @panel ?= atom.workspace.addLeftPanel item: this
-    @repoCount.context.innerHTML = Math.floor Math.random() * 10
 
   detach: ->
     @panel.destroy()

@@ -1,6 +1,5 @@
 { CompositeDisposable } = require 'atom'
 Config = require '../config/settings'
-{get} = require 'axios'
 ProjectsView = require './projects-view'
 
 module.exports = GitLab =

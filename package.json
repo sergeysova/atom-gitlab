@@ -12,6 +12,7 @@
   "dependencies": {
     "atom-space-pen-views": "^2.2.0",
     "axios": "^0.10.0",
+    "es6-promisify": "^4.0.0",
     "space-pen": "^5.1.2"
   }
 }
